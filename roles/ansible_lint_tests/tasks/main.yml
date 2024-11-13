@@ -1,1 +1,31 @@
 ---
+
+- name: Check how ansible-lint performs on very long URLs
+  ansible.builtin.get_url:
+    url: "https://this.is/a/very/very/very/very/very/very/very/very/very/very/very/very/very/very/very/very/very/\
+    very/very/very/very/very/very/very/very/very/veryvery/very/very/very/very/very/very/very/veryv/ery/very/very/\
+    very/long/url"
+  # ansible-lint convert that line to the following and fails with the error message
+  #  url:
+  #    https://this.is/a/very/very/very/very/very/very/very/very/very/very/very/very/very/very/very/very/very/very/very/very/very/very/very/very/very/very/veryvery/very/very/very/very/very/very/very/veryv/ery/very/very/very/long/url
+  # check for broken symlinks............................(no files to check)Skipped
+  # check json...........................................(no files to check)Skipped
+  # check for merge conflicts................................................Passed
+  # check toml...........................................(no files to check)Skipped
+  # detect private key.......................................................Passed
+  # fix end of files.........................................................Passed
+  # fix requirements.txt.................................(no files to check)Skipped
+  # trim trailing whitespace.................................................Passed
+  # check yaml...............................................................Passed
+  # debug statements (python)............................(no files to check)Skipped
+  # shellcheck...........................................(no files to check)Skipped
+  # Ansible-lint.............................................................Failed
+  # - hook id: ansible-lint
+  # - files were modified by this hook
+  #
+  # Modified 1 files.
+  # Passed: 0 failure(s), 0 warning(s) on 11 files. Profile 'production' was required, and it passed.
+    dest: /tmp/test
+    owner: root
+    group: root
+    mode: "0640"
