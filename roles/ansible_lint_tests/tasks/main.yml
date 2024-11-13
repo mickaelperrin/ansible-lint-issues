@@ -29,3 +29,34 @@
     owner: root
     group: root
     mode: "0640"
+
+- name: Check how ansible-lint performs with public keys
+  ansible.posix.authorized_key:
+    user: root
+    state: present
+    key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC3Hd3gS1XYOU7zHk4jrHfHF4C1f5RcyM66LiWrIxi5vL2FA62lH9UxeU13E1ihCwZzOgrP\
+    0uHYqHwbFbFFcJ2Zf3Y0TwFEidcWlTAljz+/0Zcfl1gPQAt84MIpxTAnmRx7Cy9RiXG8bl3yTxV5Av/SSXH3qZkpwAjZBRd1Cw38obHFdGjpzmyBdDk\
+    HzoUsHLNa6K9PyzKbsmjAz6t/RTPnSksHk8jYKPXE/gSDQPVTHad8ND7pZP4OqReYmWxIoTrp3NmDjxGh1RBqFUIJSV0EX1t3gB8KE4PhbSoH6T1sm\
+    K//Fb3KKXuodnG0zZw2T1Dk5GdILQ05Rf0lZZN8sPvMX9I1F9n"
+  # ansible-lint convert that line to the following and fails with the error message
+  #  key: ssh-rsa
+  #     AAAAB3NzaC1yc2EAAAADAQABAAABAQC3Hd3gS1XYOU7zHk4jrHfHF4C1f5RcyM66LiWrIxi5vL2FA62lH9UxeU13E1ihCwZzOgrP0uHYqHwbFbFFcJ2Zf3Y0TwFEidcWlTAljz+/0Zcfl1gPQAt84MIpxTAnmRx7Cy9RiXG8bl3yTxV5Av/SSXH3qZkpwAjZBRd1Cw38obHFdGjpzmyBdDkHzoUsHLNa6K9PyzKbsmjAz6t/RTPnSksHk8jYKPXE/gSDQPVTHad8ND7pZP4OqReYmWxIoTrp3NmDjxGh1RBqFUIJSV0EX1t3gB8KE4PhbSoH6T1smK//Fb3KKXuodnG0zZw2T1Dk5GdILQ05Rf0lZZN8sPvMX9I1F9n
+  # check for broken symlinks............................(no files to check)Skipped
+  # check json...........................................(no files to check)Skipped
+  # check for merge conflicts................................................Passed
+  # check toml...........................................(no files to check)Skipped
+  # detect private key.......................................................Passed
+  # fix end of files.........................................................Passed
+  # fix requirements.txt.................................(no files to check)Skipped
+  # trim trailing whitespace.................................................Passed
+  # check yaml...............................................................Passed
+  # debug statements (python)............................(no files to check)Skipped
+  # shellcheck...........................................(no files to check)Skipped
+  # Ansible-lint.............................................................Failed
+  # - hook id: ansible-lint
+  # - files were modified by this hook
+  #
+  # ERROR    Rule specific fix not applied for: yaml/yaml roles/ansible_lint_tests/tasks/main.yml:10
+  #
+  # Modified 1 files.
+  # Passed: 0 failure(s), 0 warning(s) on 11 files. Profile 'production' was required, and it passed.
