@@ -31,7 +31,7 @@ license:
 # A list of tags you want to associate with the collection for indexing/searching. A tag name has the same character
 # requirements as 'namespace' and 'name'
 tags:
-  - base
+  - tools
 
 # Collections that this collection requires to be installed for it to be usable. The key of the dict is the
 # collection label 'namespace.name'. The value is a version range
@@ -39,8 +39,7 @@ tags:
 # range specifiers can be set and are separated by ','
 
 # BEWARE dependencies should be refleted in ~/DevOps/Packer/vmware/2-provision-base-image/requirements.yml
-dependencies: []
-
+dependencies: {}
 # A list of file glob-like patterns used to filter any files or directories that should not be included in the build
 # artifact. A pattern is matched from the relative path of the file or directory of the collection directory. This
 # uses 'fnmatch' to match the files or directories. Some directories and files like 'galaxy.yml', '*.pyc', '*.retry',
