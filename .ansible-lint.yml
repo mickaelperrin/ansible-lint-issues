@@ -1,0 +1,28 @@
+---
+profile: production
+use_default_rules: true
+skip_list:
+  - galaxy[no-changelog]
+  - galaxy[no-runtime]
+  - schema[galaxy]
+verbosity: -2
+write_list:
+  - all
+exclude_paths:
+  # Exclude test files
+  - roles/base/tests/goss
+  - roles/base/tests/goss.yml
+  - roles/netdata/tests/goss
+  - roles/netdata/tests/goss.yml
+  - roles/docker/tests/goss
+  - roles/docker/tests/goss.yml
+  - roles/evobackup_client/tests/goss
+  - roles/evobackup_client/tests/goss.yml
+  - roles/evobackup_server/tests/goss
+  - roles/evobackup_server/tests/goss.yml
+  - roles/security/tests/goss
+  - roles/security/tests/goss.yml
+  - roles/users/tests/goss
+  - roles/users/tests/goss.yml
+  # Can't commit with that file due to ssh-rsa
+  - roles/users/defaults/main.yml

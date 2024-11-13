@@ -1,0 +1,34 @@
+---
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-symlinks
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-toml
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: requirements-txt-fixer
+      - id: trailing-whitespace
+      - id: check-yaml
+      - id: debug-statements
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.10.0.1
+    hooks:
+      - id: shellcheck
+        exclude: /p10k\.zsh$
+  - repo: git@github.com:ansible/ansible-lint.git
+    rev: v24.9.2
+    hooks:
+      - id: ansible-lint
+        args:
+          - -c
+          - .ansible-lint.yml
+        additional_dependencies:
+          # https://github.com/pre-commit/pre-commit/issues/1526
+          # If you want to use specific version of ansible-core or ansible, feel
+          # free to override `additional_dependencies` in your own hook config
+          # file.
+          - ansible==7.7.0
+          - passlib==1.7.4
